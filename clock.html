@@ -12,7 +12,7 @@
       height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
-      font-size: 4em;
+      font-size: 2em;
     }
   </style>
 </head>
@@ -21,13 +21,17 @@
   <script>
     function updateClock() {
       const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
+      let hours = now.getHours();
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+
+      hours = hours % 12;
+      hours = hours ? hours : 12; // '0' hour should be '12'
+      
+      document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+    setInterval(updateClock, 60000); // Update every minute
+    updateClock(); // Initial call
   </script>
 </body>
 </html>
