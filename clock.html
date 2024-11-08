@@ -19,11 +19,16 @@
       align-items: center;
     }
     #date {
-      text-align: right;
+      text-align: center;
       margin-right: 20px;
+      line-height: 1; /* Adjusts spacing between lines */
     }
-    #month, #day {
-      display: block;
+    #day {
+      font-size: 0.6em; /* Smaller font for the day */
+      font-weight: bold;
+    }
+    #month-date {
+      font-size: 0.6em; /* Smaller font for the month and date */
     }
   </style>
 </head>
@@ -31,7 +36,7 @@
   <div id="clock-container">
     <div id="date">
       <div id="day"></div>
-      <div id="month"></div>
+      <div id="month-date"></div>
     </div>
     <div id="clock"></div>
   </div>
@@ -55,7 +60,7 @@
 
       // Update the date and time elements
       document.getElementById('day').textContent = day;
-      document.getElementById('month').textContent = `${month} ${date}`;
+      document.getElementById('month-date').textContent = `${month} ${date}`;
       document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
     }
 
@@ -64,4 +69,5 @@
   </script>
 </body>
 </html>
+
 
