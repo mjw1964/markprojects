@@ -11,27 +11,54 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: Tahoma, sans-serif;
-      font-size: 6em;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
+    }
+    #clock-container {
+      display: flex;
+      align-items: center;
+    }
+    #date {
+      text-align: right;
+      margin-right: 20px;
     }
   </style>
 </head>
 <body>
-  <div id="clock"></div>
+  <div id="clock-container">
+    <div id="date">
+      <div id="month"></div>
+      <div id="day"></div>
+    </div>
+    <div id="clock"></div>
+  </div>
+  
   <script>
     function updateClock() {
       const now = new Date();
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      // Get the day, month, and date
+      const day = days[now.getDay()];
+      const month = months[now.getMonth()];
+      const date = now.getDate();
+
+      // Get the time in 12-hour format
       let hours = now.getHours();
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const ampm = hours >= 12 ? 'PM' : 'AM';
+      hours = hours % 12 || 12;
 
-      hours = hours % 12;
-      hours = hours ? hours : 12; // '0' hour should be '12'
-      
+      // Update the date and time elements
+      document.getElementById('month').textContent = `${month}`;
+      document.getElementById('day').textContent = `${day} ${date}`;
       document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
     }
+
     setInterval(updateClock, 60000); // Update every minute
     updateClock(); // Initial call
   </script>
 </body>
 </html>
+
