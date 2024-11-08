@@ -11,8 +11,8 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: Bahnschrift, DIN 1451;
-      font-size: 6em;
+      font-family: Arial, sans-serif;
+      font-size: 2em;
     }
     #clock-container {
       display: flex;
@@ -22,13 +22,16 @@
       text-align: right;
       margin-right: 20px;
     }
+    #month, #day {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <div id="clock-container">
     <div id="date">
-      <div id="month"></div>
       <div id="day"></div>
+      <div id="month"></div>
     </div>
     <div id="clock"></div>
   </div>
@@ -51,8 +54,8 @@
       hours = hours % 12 || 12;
 
       // Update the date and time elements
-      document.getElementById('month').textContent = `${month}`;
-      document.getElementById('day').textContent = `${day} ${date}`;
+      document.getElementById('day').textContent = day;
+      document.getElementById('month').textContent = `${month} ${date}`;
       document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
     }
 
