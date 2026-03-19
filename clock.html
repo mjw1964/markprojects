@@ -54,7 +54,6 @@
       // Get the time in 12-hour format
       let hours = now.getHours();
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12 || 12;
 
       // Update the date and time elements
