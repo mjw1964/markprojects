@@ -12,7 +12,7 @@
       height: 100vh;
       margin: 0;
       font-family: Tahoma, sans-serif;
-      font-size: 2em;
+      font-size: 3em;
     }
     #clock-container {
       display: flex;
@@ -60,7 +60,7 @@
       // Update the date and time elements
       document.getElementById('day').textContent = day;
       document.getElementById('month-date').textContent = `${month} ${date}`;
-      document.getElementById('clock').textContent = `${hours}:${minutes} ${ampm}`;
+      document.getElementById('clock').textContent = `${hours}:${minutes}`;
     }
 
     setInterval(updateClock, 60000); // Update every minute
