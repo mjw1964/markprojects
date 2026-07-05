@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: sans-serif;
+      background: #eaf4ff;
+      color: #1e3a8a;
+    }
+  </style>
+</head>
+<body>
+  <h3>Weather Test</h3>
+  <p>If you can see this inside Notion, embeds work.</p>
+</body>
+</html>
