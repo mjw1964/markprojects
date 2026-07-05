@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Command Center Weather</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: transparent;
+      color: #1f2937;
+    }
+
+    .weather-card {
+      box-sizing: border-box;
+      width: 100%;
+      min-height: 180px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #eaf4ff, #f7fbff);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    .label {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #2563eb;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .temp {
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 750;
+      color: #0f172a;
+    }
+
+    .condition {
+      margin-top: 6px;
+      font-size: 15px;
+      color: #334155;
+      text-transform: capitalize;
+    }
+
+    .icon {
+      width: 72px;
+      height: 72px;
+    }
+
+    .details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 14px;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #475569;
+    }
+
+    .detail strong {
+      color: #1e3a8a;
+      font-weight: 650;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(37, 99, 235, 0.18);
+      font-size: 13px;
+      color: #334155;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-card">
+    <div class="label">Daily Weather</div>
+
+    <div class="main">
+      <div>
+        <div class="temp" id="temp">--°</div>
+        <div class="condition" id="condition">Loading weather…</div>
+      </div>
+      <img class="icon" id="icon" alt="" />
+    </div>
+
+    <div class="details">
+      <div class="detail">Feels like: <strong id="feels">--°</strong></div>
+      <div class="detail">Humidity: <strong id="humidity">--%</strong></div>
+      <div class="detail">Wind: <strong id="wind">-- mph</strong></div>
+      <div class="detail">High / Low: <strong id="highlow">--° / --°</strong></div>
+    </div>
+
+    <div class="note" id="note">Checking conditions for today.</div>
+  </div>
+
+  <script>
+    const API_KEY = "3834bd0ea04a5bc0c3080130fbe847a9";
+    const CITY = "Oxford";
+    const STATE = "NC";
+    const COUNTRY = "US";
+
+    const url =
+      `https://api.openweathermap.org/data/2.5/weather?q=${CITY},${STATE},${COUNTRY}&appid=${API_KEY}&units=imperial`;
+
+    function readinessNote(data) {
+      const temp = data.main.temp;
+      const wind = data.wind.speed;
+      const condition = data.weather[0].main.toLowerCase();
+
+      if (condition.includes("rain") || condition.includes("drizzle")) {
+        return "Umbrella weather. Plan for wet roads and slower errands.";
+      }
+
+      if (condition.includes("snow")) {
+        return "Cold-weather caution. Check roads before heading out.";
+      }
+
+      if (temp >= 90) {
+        return "Hot conditions. Carry water and avoid long outdoor stretches if possible.";
+      }
+
+      if (temp <= 40) {
+        return "Cold conditions. Jacket recommended before heading out.";
+      }
+
+      if (wind >= 18) {
+        return "Breezy today. Secure papers, hats, and anything light.";
+      }
+
+      return "Good general conditions for errands, meetings, and field service.";
+    }
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Weather request failed");
+        }
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById("temp").textContent =
+          Math.round(data.main.temp) + "°";
+
+        document.getElementById("condition").textContent =
+          data.weather[0].description;
+
+        document.getElementById("feels").textContent =
+          Math.round(data.main.feels_like) + "°";
+
+        document.getElementById("humidity").textContent =
+          data.main.humidity + "%";
+
+        document.getElementById("wind").textContent =
+          Math.round(data.wind.speed) + " mph";
+
+        document.getElementById("highlow").textContent =
+          Math.round(data.main.temp_max) + "° / " + Math.round(data.main.temp_min) + "°";
+
+        document.getElementById("icon").src =
+          `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+        document.getElementById("note").textContent = readinessNote(data);
+      })
+      .catch(error => {
+        document.getElementById("condition").textContent =
+          "Weather unavailable";
+
+        document.getElementById("note").textContent =
+          "Check the API key, city name, or OpenWeather account status.";
+      });
+  </script>
+</body>
+</html>
