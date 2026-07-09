@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Meeting Radar Banner&lt;/title&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>:root {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--blue-deep: #075985;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--blue-main: #0b6e99;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--blue-edge: #1e88b5;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text-main: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text-soft: rgba(255, 255, 255, 0.82);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--text-muted: rgba(255, 255, 255, 0.68);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--line-soft: rgba(255, 255, 255, 0.24);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--panel-bg: rgba(255, 255, 255, 0.14);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>--panel-border: rgba(255, 255, 255, 0.25);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>* {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-main);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.banner {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-height: 124px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 22px 28px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.18), transparent 28%),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(135deg, var(--blue-deep), var(--blue-main) 58%, var(--blue-edge));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.banner::before {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>content: "";</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>inset: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background:</p>
+<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(90deg, rgba(255, 255, 255, 0.09) 1px, transparent 1px),</p>
+<p class="p1"><span class="Apple-converted-space">        </span>linear-gradient(0deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background-size: 36px 36px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>opacity: 0.28;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.left,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-card {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>z-index: 1;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.eyebrow {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>display: inline-flex;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>gap: 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 7px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.16em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 750;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-soft);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.signal-dot {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>width: 9px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>height: 9px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 999px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.14);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>flex: 0 0 auto;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(34px, 5.2vw, 56px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 0.94;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: -0.055em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 830;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.subtitle {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 8px 0 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(14px, 2vw, 18px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.35;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-soft);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-card {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>min-width: 240px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>max-width: 330px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>padding: 16px 18px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>background: var(--panel-bg);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>border: 1px solid var(--panel-border);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>backdrop-filter: blur(8px);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-label {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0 0 8px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 11px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.15em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-soft);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 780;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-countdown {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: clamp(30px, 4.4vw, 46px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 0.95;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: -0.06em;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 840;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: #ffffff;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-title {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 8px 0 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.25;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: rgba(255, 255, 255, 0.92);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 650;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>white-space: nowrap;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>text-overflow: ellipsis;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>.next-detail {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>margin: 4px 0 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-size: 13px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>color: var(--text-muted);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 500;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 680px) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>.banner {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>min-height: 154px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>padding: 20px 22px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>align-items: flex-start;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>gap: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.next-card {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>max-width: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>min-width: 0;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>.next-title {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>white-space: normal;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="banner" aria-label="Meeting Radar banner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="eyebrow"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="signal-dot"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Calendar to Notes</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1 class="title"&gt;Meeting Radar&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="subtitle"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Work + personal meetings • AI notes capture • follow-through</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;aside class="next-card" aria-label="Next meeting countdown"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="next-label"&gt;Next meeting&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="next-countdown" id="nextCountdown"&gt;--&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="next-title" id="nextTitle"&gt;Checking calendar signal&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="next-detail" id="nextDetail"&gt;Work + personal&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/aside&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>/*</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Manually maintained meeting list.</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>Important:</p>
+<p class="p1"><span class="Apple-converted-space">      </span>This banner does not read Notion Calendar directly.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Update this list when you want the countdown to reflect upcoming meetings.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>*/</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>const meetings = [</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "BWG - Programs Meeting",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-09T08:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Walmart Spark Good Discussion",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-09T09:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "test meeting",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-09T11:45:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Lunch w/ Beth &amp; Steve",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-09T12:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Clifton Hicks Study",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-11T11:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "BD Team Standing Meeting",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-13T12:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Strategy Team Mtg",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-14T10:00:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Budget Meeting",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-14T15:00:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Tar River MWM",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-14T19:00:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Will-Mark Sync",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-15T12:30:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>{</p>
+<p class="p1"><span class="Apple-converted-space">        </span>title: "Governance BWG Meeting",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>start: "2026-07-16T10:00:00-04:00"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function formatCountdown(ms) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (ms &lt;= 0) return "Now";</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const totalMinutes = Math.floor(ms / 60000);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const days = Math.floor(totalMinutes / 1440);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const hours = Math.floor((totalMinutes % 1440) / 60);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const minutes = totalMinutes % 60;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (days &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return `${days}d ${hours}h`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (hours &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return `${hours}h ${minutes}m`;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>return `${minutes}m`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function formatMeetingTime(date) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>return date.toLocaleString("en-US", {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>weekday: "short",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hour: "numeric",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>minute: "2-digit",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>hour12: true</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>function updateNextMeeting() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const now = new Date();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const upcoming = meetings</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.map(meeting =&gt; ({</p>
+<p class="p1"><span class="Apple-converted-space">          </span>...meeting,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>date: new Date(meeting.start)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}))</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.filter(meeting =&gt; meeting.date &gt; now)</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sort((a, b) =&gt; a.date - b.date);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const countdownEl = document.getElementById("nextCountdown");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const titleEl = document.getElementById("nextTitle");</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const detailEl = document.getElementById("nextDetail");</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!upcoming.length) {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>countdownEl.textContent = "Clear";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>titleEl.textContent = "No upcoming meetings";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>detailEl.textContent = "Calendar signal quiet";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>const next = upcoming[0];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const diff = next.date - now;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>countdownEl.textContent = formatCountdown(diff);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>titleEl.textContent = next.title;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>detailEl.textContent = formatMeetingTime(next.date);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>updateNextMeeting();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setInterval(updateNextMeeting, 60000);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
