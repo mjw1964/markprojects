@@ -1,319 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meeting Radar Banner</title>
 
-  <title>Meeting Radar Banner</title>
+<style>
+:root {
+--navy-950: #0f223f;
+--navy-900: #17345e;
+--navy-700: #2d5d97;
+--blue-300: #8ec5ff;
+--blue-200: #cfe9ff;
+--white: #ffffff;
+--soft-white: rgba(255,255,255,0.88);
+--muted-white: rgba(255,255,255,0.68);
+--border: rgba(255,255,255,0.18);
+}
 
-  <style>
-    :root {
-      --blue-deep: #075985;
-      --blue-main: #0b6e99;
-      --blue-edge: #1e88b5;
-      --text-main: #ffffff;
-      --text-soft: rgba(255, 255, 255, 0.82);
-      --text-muted: rgba(255, 255, 255, 0.68);
-      --panel-bg: rgba(255, 255, 255, 0.13);
-      --panel-border: rgba(255, 255, 255, 0.23);
-    }
+* {
+box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+html, body {
+margin: 0;
+padding: 0;
+width: 100%;
+background: transparent;
+font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: transparent;
-      color: var(--text-main);
-    }
+.banner {
+position: relative;
+overflow: hidden;
+width: 100%;
+min-height: 132px;
+border-radius: 20px;
+padding: 20px 24px;
+color: var(--white);
+background:
+radial-gradient(circle at 88% 18%, rgba(207, 233, 255, 0.24), transparent 28%),
+radial-gradient(circle at 14% 90%, rgba(45, 93, 151, 0.30), transparent 38%),
+linear-gradient(135deg, var(--navy-950), var(--navy-900) 58%, var(--navy-700));
+border: 1px solid var(--border);
+box-shadow:
+0 1px 2px rgba(0,0,0,0.08),
+0 8px 22px rgba(15,34,63,0.18);
+}
 
-    .banner {
-      width: 100%;
-      min-height: 68px;
-      padding: 10px 18px;
-      border-radius: 14px;
-      background:
-        radial-gradient(circle at 88% 18%, rgba(255, 255, 255, 0.14), transparent 26%),
-        linear-gradient(135deg, var(--blue-deep), var(--blue-main) 58%, var(--blue-edge));
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
+.banner::before {
+content: "";
+position: absolute;
+inset: 0;
+background:
+linear-gradient(
+120deg,
+rgba(255,255,255,0.10),
+transparent 34%,
+transparent 72%,
+rgba(255,255,255,0.06)
+);
+pointer-events: none;
+}
 
-    .banner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.075) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-      background-size: 32px 32px;
-      opacity: 0.22;
-      pointer-events: none;
-    }
+.content {
+position: relative;
+z-index: 1;
+display: grid;
+grid-template-columns: minmax(0, 1fr) auto;
+gap: 20px;
+align-items: center;
+}
 
-    .left,
-    .next-card {
-      position: relative;
-      z-index: 1;
-    }
+.label {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 8px;
+font-size: 11px;
+font-weight: 700;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--blue-200);
+}
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin-bottom: 3px;
-      font-size: 9px;
-      line-height: 1;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 750;
-      color: var(--text-soft);
-    }
+.dot {
+width: 8px;
+height: 8px;
+border-radius: 999px;
+background: var(--blue-300);
+box-shadow: 0 0 12px rgba(142, 197, 255, 0.85);
+}
 
-    .signal-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
-      flex: 0 0 auto;
-    }
+h1 {
+margin: 0;
+font-size: clamp(28px, 4vw, 38px);
+line-height: 1;
+letter-spacing: -0.05em;
+font-weight: 800;
+}
 
-    .title {
-      margin: 0;
-      font-size: clamp(22px, 3.6vw, 32px);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      font-weight: 830;
-    }
+.subtitle {
+margin: 10px 0 0;
+max-width: 560px;
+font-size: clamp(14px, 1.8vw, 16px);
+line-height: 1.45;
+color: var(--soft-white);
+}
 
-    .subtitle {
-      margin: 3px 0 0;
-      font-size: clamp(11px, 1.5vw, 13px);
-      line-height: 1.25;
-      color: var(--text-soft);
-      font-weight: 500;
-    }
+.next-card {
+padding: 12px 14px;
+min-width: 190px;
+max-width: 230px;
+border-radius: 16px;
+background: rgba(255,255,255,0.10);
+border: 1px solid rgba(255,255,255,0.16);
+text-align: right;
+backdrop-filter: blur(8px);
+}
 
-    .next-card {
-      min-width: 190px;
-      max-width: 260px;
-      padding: 8px 12px;
-      border-radius: 12px;
-      background: var(--panel-bg);
-      border: 1px solid var(--panel-border);
-      backdrop-filter: blur(8px);
-    }
+.next-label {
+margin-bottom: 4px;
+font-size: 10px;
+font-weight: 700;
+letter-spacing: 0.12em;
+text-transform: uppercase;
+color: rgba(255,255,255,0.58);
+}
 
-    .next-label {
-      margin: 0 0 3px;
-      font-size: 8px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-soft);
-      font-weight: 780;
-    }
+.next-countdown {
+font-size: 28px;
+font-weight: 800;
+color: rgba(255,255,255,0.96);
+line-height: 1;
+letter-spacing: -0.05em;
+}
 
-    .next-row {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      min-width: 0;
-    }
+.next-title {
+margin-top: 5px;
+font-size: 13px;
+font-weight: 700;
+color: rgba(255,255,255,0.90);
+line-height: 1.25;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
 
-    .next-countdown {
-      margin: 0;
-      font-size: clamp(20px, 3vw, 28px);
-      line-height: 0.95;
-      letter-spacing: -0.055em;
-      font-weight: 840;
-      color: #ffffff;
-      flex: 0 0 auto;
-    }
+.next-detail {
+margin-top: 3px;
+font-size: 12px;
+color: var(--muted-white);
+}
 
-    .next-meta {
-      min-width: 0;
-    }
+@media (max-width: 700px) {
+.banner {
+min-height: 148px;
+padding: 18px 20px;
+border-radius: 18px;
+}
 
-    .next-title {
-      margin: 0;
-      font-size: 11px;
-      line-height: 1.15;
-      color: rgba(255, 255, 255, 0.92);
-      font-weight: 650;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+.content {
+grid-template-columns: 1fr;
+align-items: start;
+}
 
-    .next-detail {
-      margin: 2px 0 0;
-      font-size: 10px;
-      color: var(--text-muted);
-      font-weight: 500;
-      white-space: nowrap;
-    }
+.next-card {
+width: 100%;
+text-align: left;
+min-width: 0;
+max-width: none;
+}
 
-    @media (max-width: 680px) {
-      .banner {
-        min-height: 104px;
-        padding: 12px 16px;
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 10px;
-      }
+.next-title {
+white-space: normal;
+}
+}
 
-      .next-card {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-      }
+@media (prefers-reduced-motion: no-preference) {
+.banner {
+background-size: 140% 140%;
+animation: drift 12s ease-in-out infinite alternate;
+}
 
-      .next-title {
-        white-space: normal;
-      }
-    }
-  </style>
+@keyframes drift {
+from { background-position: 0% 50%; }
+to { background-position: 100% 50%; }
+}
+}
+</style>
 </head>
 
 <body>
-  <section class="banner" aria-label="Meeting Radar banner">
-    <div class="left">
-      <div class="eyebrow">
-        <span class="signal-dot"></span>
-        Calendar to Notes
-      </div>
+<section class="banner" aria-label="Meeting Radar section banner">
+<div class="content">
+<div>
+<div class="label">
+<span class="dot"></span>
+Calendar to Notes
+</div>
 
-      <h1 class="title">Meeting Radar</h1>
+<h1>MEETING RADAR</h1>
 
-      <p class="subtitle">
-        Work + personal meetings • AI notes capture • follow-through
-      </p>
-    </div>
+<p class="subtitle">
+Work + personal meetings, AI notes capture, and follow-through.
+</p>
+</div>
 
-    <aside class="next-card" aria-label="Next meeting countdown">
-      <p class="next-label">Next meeting</p>
+<div class="next-card" aria-label="Next meeting">
+<div class="next-label">Next Meeting</div>
+<div class="next-countdown" id="nextCountdown">Loading…</div>
+<div class="next-title" id="nextTitle">Checking calendar signal</div>
+<div class="next-detail" id="nextDetail">Work + personal</div>
+</div>
+</div>
+</section>
 
-      <div class="next-row">
-        <p class="next-countdown" id="nextCountdown">--</p>
+<script>
+const meetings = [
+{
+title: "BWG - Programs Meeting",
+start: "2026-07-09T08:30:00-04:00"
+},
+{
+title: "Walmart Spark Good Discussion",
+start: "2026-07-09T09:30:00-04:00"
+},
+{
+title: "test meeting",
+start: "2026-07-09T11:45:00-04:00"
+},
+{
+title: "Lunch w/ Beth & Steve",
+start: "2026-07-09T12:30:00-04:00"
+},
+{
+title: "Clifton Hicks Study",
+start: "2026-07-11T11:30:00-04:00"
+},
+{
+title: "BD Team Standing Meeting",
+start: "2026-07-13T12:30:00-04:00"
+},
+{
+title: "Strategy Team Mtg",
+start: "2026-07-14T10:00:00-04:00"
+},
+{
+title: "Budget Meeting",
+start: "2026-07-14T15:00:00-04:00"
+},
+{
+title: "Tar River MWM",
+start: "2026-07-14T19:00:00-04:00"
+},
+{
+title: "Will-Mark Sync",
+start: "2026-07-15T12:30:00-04:00"
+},
+{
+title: "Governance BWG Meeting",
+start: "2026-07-16T10:00:00-04:00"
+}
+];
 
-        <div class="next-meta">
-          <p class="next-title" id="nextTitle">Checking calendar signal</p>
-          <p class="next-detail" id="nextDetail">Work + personal</p>
-        </div>
-      </div>
-    </aside>
-  </section>
+function formatCountdown(ms) {
+if (ms <= 0) return "Now";
 
-  <script>
-    const meetings = [
-      {
-        title: "BWG - Programs Meeting",
-        start: "2026-07-09T08:30:00-04:00"
-      },
-      {
-        title: "Walmart Spark Good Discussion",
-        start: "2026-07-09T09:30:00-04:00"
-      },
-      {
-        title: "test meeting",
-        start: "2026-07-09T11:45:00-04:00"
-      },
-      {
-        title: "Lunch w/ Beth & Steve",
-        start: "2026-07-09T12:30:00-04:00"
-      },
-      {
-        title: "Clifton Hicks Study",
-        start: "2026-07-11T11:30:00-04:00"
-      },
-      {
-        title: "BD Team Standing Meeting",
-        start: "2026-07-13T12:30:00-04:00"
-      },
-      {
-        title: "Strategy Team Mtg",
-        start: "2026-07-14T10:00:00-04:00"
-      },
-      {
-        title: "Budget Meeting",
-        start: "2026-07-14T15:00:00-04:00"
-      },
-      {
-        title: "Tar River MWM",
-        start: "2026-07-14T19:00:00-04:00"
-      },
-      {
-        title: "Will-Mark Sync",
-        start: "2026-07-15T12:30:00-04:00"
-      },
-      {
-        title: "Governance BWG Meeting",
-        start: "2026-07-16T10:00:00-04:00"
-      }
-    ];
+const totalMinutes = Math.floor(ms / 60000);
+const days = Math.floor(totalMinutes / 1440);
+const hours = Math.floor((totalMinutes % 1440) / 60);
+const minutes = totalMinutes % 60;
 
-    function formatCountdown(ms) {
-      if (ms <= 0) return "Now";
+if (days > 0) return `${days}d ${hours}h`;
+if (hours > 0) return `${hours}h ${minutes}m`;
+return `${minutes}m`;
+}
 
-      const totalMinutes = Math.floor(ms / 60000);
-      const days = Math.floor(totalMinutes / 1440);
-      const hours = Math.floor((totalMinutes % 1440) / 60);
-      const minutes = totalMinutes % 60;
+function formatMeetingTime(date) {
+return date.toLocaleString("en-US", {
+timeZone: "America/New_York",
+weekday: "short",
+hour: "numeric",
+minute: "2-digit",
+hour12: true
+});
+}
 
-      if (days > 0) return `${days}d ${hours}h`;
-      if (hours > 0) return `${hours}h ${minutes}m`;
-      return `${minutes}m`;
-    }
+function updateNextMeeting() {
+const now = new Date();
 
-    function formatMeetingTime(date) {
-      return date.toLocaleString("en-US", {
-        weekday: "short",
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-      });
-    }
+const upcoming = meetings
+.map(meeting => ({
+...meeting,
+date: new Date(meeting.start)
+}))
+.filter(meeting => meeting.date > now)
+.sort((a, b) => a.date - b.date);
 
-    function updateNextMeeting() {
-      const now = new Date();
+const countdownEl = document.getElementById("nextCountdown");
+const titleEl = document.getElementById("nextTitle");
+const detailEl = document.getElementById("nextDetail");
 
-      const upcoming = meetings
-        .map(meeting => ({
-          ...meeting,
-          date: new Date(meeting.start)
-        }))
-        .filter(meeting => meeting.date > now)
-        .sort((a, b) => a.date - b.date);
+if (!upcoming.length) {
+countdownEl.textContent = "Clear";
+titleEl.textContent = "No upcoming meetings";
+detailEl.textContent = "Calendar signal quiet";
+return;
+}
 
-      const countdownEl = document.getElementById("nextCountdown");
-      const titleEl = document.getElementById("nextTitle");
-      const detailEl = document.getElementById("nextDetail");
+const next = upcoming[0];
+const diff = next.date - now;
 
-      if (!upcoming.length) {
-        countdownEl.textContent = "Clear";
-        titleEl.textContent = "No upcoming meetings";
-        detailEl.textContent = "Calendar signal quiet";
-        return;
-      }
+countdownEl.textContent = formatCountdown(diff);
+titleEl.textContent = next.title;
+detailEl.textContent = formatMeetingTime(next.date);
+}
 
-      const next = upcoming[0];
-      const diff = next.date - now;
-
-      countdownEl.textContent = formatCountdown(diff);
-      titleEl.textContent = next.title;
-      detailEl.textContent = formatMeetingTime(next.date);
-    }
-
-    updateNextMeeting();
-    setInterval(updateNextMeeting, 60000);
-  </script>
+updateNextMeeting();
+setInterval(updateNextMeeting, 60000);
+</script>
 </body>
 </html>
